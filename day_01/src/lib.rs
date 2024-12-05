@@ -26,6 +26,9 @@ mod tests {
 1   3
 3   9
 3   3";
-        assert_eq!(convert_input_to_vecs(input), (vec![3, 4, 2, 1, 3, 3], vec![4, 3, 5, 3, 9, 3]));
+        assert_eq!(
+            convert_input_to_vecs(input),
+            (vec![3, 4, 2, 1, 3, 3], vec![4, 3, 5, 3, 9, 3])
+        );
     }
 }

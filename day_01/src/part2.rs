@@ -3,10 +3,11 @@ use crate::convert_input_to_vecs;
 pub fn process(input: &str) -> usize {
     let (left, right) = convert_input_to_vecs(input);
 
-    let result: usize = left.iter().map(|num| {
-        num * right.iter().filter(|r| &num == r).count()
-    }).sum();
-    
+    let result: usize = left
+        .iter()
+        .map(|num| num * right.iter().filter(|r| &num == r).count())
+        .sum();
+
     result
 }
 
