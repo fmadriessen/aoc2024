@@ -13,9 +13,9 @@ pub fn process(input: &str) -> usize {
                         return true;
                     };
                 }
-                return false;
+                false
             } else {
-                return true;
+                true
             }
         })
         .count()

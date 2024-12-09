@@ -5,6 +5,7 @@ use crate::{is_correct_order, parse};
 pub fn process(input: &str) -> usize {
     let (rules, mut updates) = parse(input);
 
+    #[allow(clippy::manual_inspect)]
     updates
         .iter_mut()
         .filter(|update| !is_correct_order(&rules, update))

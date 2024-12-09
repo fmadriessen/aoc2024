@@ -41,10 +41,12 @@ impl Direction {
 
 pub type Span<'a> = LocatedSpan<&'a str>;
 
-pub fn parse(input: Span) -> IResult<Span, ((IVec2, char), HashMap<IVec2, char>)> {
+type Item = (IVec2, char);
+
+pub fn parse(input: Span) -> IResult<Span, (Item, HashMap<IVec2, char>)> {
     let (input, items) = separated_list1(line_ending, many1(token))(input)?;
 
-    let position = items
+    let guard = items
         .iter()
         .flatten()
         .find(|(_, c)| c == &'^')
@@ -56,7 +58,7 @@ pub fn parse(input: Span) -> IResult<Span, ((IVec2, char), HashMap<IVec2, char>)
         .filter(|(_, c)| c == &'#')
         .collect();
 
-    Ok((input, (position, obstacles)))
+    Ok((input, (guard, obstacles)))
 }
 
 fn token(input: Span) -> IResult<Span, (IVec2, char)> {
