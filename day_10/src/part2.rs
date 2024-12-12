@@ -16,7 +16,10 @@ pub fn process(input: &str) -> usize {
                     DIRECTIONS
                         .iter()
                         .map(|direction| position + direction)
-                        .filter(|successor| grid.get(successor).is_some_and(|height| grid.get(position).unwrap() + 1 == *height))
+                        .filter(|successor| {
+                            grid.get(successor)
+                                .is_some_and(|height| grid.get(position).unwrap() + 1 == *height)
+                        })
                         .collect::<Vec<_>>()
                 },
                 |position| grid.get(position).is_some_and(|height| *height == 9),

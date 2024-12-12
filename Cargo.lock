@@ -97,6 +97,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_11"
+version = "0.1.0"
+
+[[package]]
+name = "day_12"
+version = "0.1.0"
+dependencies = [
+ "glam",
+ "itertools",
+]
+
+[[package]]
 name = "deprecate-until"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

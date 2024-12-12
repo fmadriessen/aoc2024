@@ -19,31 +19,36 @@ pub fn process(input: &str) -> usize {
         let mut successors: HashSet<IVec2> = HashSet::from([*position]);
 
         while !successors.is_empty() {
-        let next_generation = successors
-            .iter()
-            .flat_map(|start| {
-                DIRECTIONS
-                    .iter()
-                    .map(move |direction| (direction + start, start))
-            })
-            .filter(|(successor, start)| {
-                !successors.contains(successor)
-                    && grid
-                        .get(successor)
-                        .is_some_and(|height| *height == grid.get(start).unwrap() + 1)
-            })
-            .map(|(successor, _)| successor)
-            .collect::<HashSet<IVec2>>();
+            let next_generation = successors
+                .iter()
+                .flat_map(|start| {
+                    DIRECTIONS
+                        .iter()
+                        .map(move |direction| (direction + start, start))
+                })
+                .filter(|(successor, start)| {
+                    !successors.contains(successor)
+                        && grid
+                            .get(successor)
+                            .is_some_and(|height| *height == grid.get(start).unwrap() + 1)
+                })
+                .map(|(successor, _)| successor)
+                .collect::<HashSet<IVec2>>();
 
+            for successor in next_generation.iter() {
+                visited.insert(*successor);
+            }
 
-        for successor in next_generation.iter() {
-            visited.insert(*successor);
+            successors = next_generation;
         }
 
-        successors = next_generation;
-        }
-
-        trails.insert(*position, visited.iter().filter(|position| *grid.get(position).unwrap() == 9).count());
+        trails.insert(
+            *position,
+            visited
+                .iter()
+                .filter(|position| *grid.get(position).unwrap() == 9)
+                .count(),
+        );
     }
 
     trails.values().sum()
