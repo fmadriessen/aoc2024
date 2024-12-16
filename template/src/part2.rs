@@ -1,4 +1,4 @@
-pub fn process(input: &str) -> usize {
+pub fn process(input: &str) -> i32 {
     todo!();
 }
 
