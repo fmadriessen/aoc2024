@@ -1,0 +1,9 @@
+[package]
+name = "day_16"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+glam.workspace = true
+pathfinding.workspace = true
+rstest = "0.23.0"
